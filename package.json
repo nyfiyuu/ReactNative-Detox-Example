@@ -7,6 +7,11 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
+    "test:e2e": "detox test --configuration ios --cleanup",
+    "build:e2e": "detox build --configuration ios",
+    "test:e2e:ci": "detox test --configuration ios.ci --cleanup",
+    "build:e2e:ci": "detox build --configuration ios.ci",
+    "detox:ci": "bash scripts/detox-ci.sh",
     "lint": "eslint ."
   },
   "dependencies": {

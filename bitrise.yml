@@ -1,0 +1,121 @@
+---
+format_version: '26'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: react-native
+workflows:
+  deploy:
+    description: |
+      Tests, builds and deploys the app using *Deploy to bitrise.io* Step.
+
+      Next steps:
+      - Set up an [Apple service with API key](https://docs.bitrise.io/en/bitrise-platform/integrations/apple-services-connection/connecting-to-an-apple-service-with-api-key.html).
+      - Check out [Getting started with React Native apps](https://docs.bitrise.io/en/bitrise-ci/getting-started/quick-start-guides/getting-started-with-react-native-projects.html).
+    steps:
+    - git-clone@8: {}
+    - yarn@2:
+        title: yarn install
+        inputs:
+        - workdir: "$WORKDIR"
+        - command: install
+    - yarn@2:
+        title: yarn test
+        inputs:
+        - workdir: "$WORKDIR"
+        - command: test
+    - custom-test-results-export@1:
+        title: Export Jest unit test results
+        inputs:
+        - test_name: Jest Unit Tests
+        - base_path: "$WORKDIR/test-results/junit.xml"
+        - search_pattern: "*"
+    - cocoapods-install@3:
+        inputs:
+        - is_cache_disabled: 'true'
+    - script@1:
+        title: Detox - Build and Test
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            set -euo pipefail
+            bash "$WORKDIR/scripts/detox-ci.sh"
+    - custom-test-results-export@1:
+        title: Export Detox e2e test results
+        inputs:
+        - test_name: Detox E2E Tests
+        - base_path: "$WORKDIR/test-results/detox-junit.xml"
+        - search_pattern: "*"
+    - install-missing-android-tools@3:
+        inputs:
+        - gradlew_path: "$PROJECT_LOCATION/gradlew"
+    - android-build@1:
+        inputs:
+        - project_location: "$PROJECT_LOCATION"
+        - module: "$MODULE"
+        - variant: "$VARIANT"
+    - xcode-archive@6:
+        inputs:
+        - project_path: "$BITRISE_PROJECT_PATH"
+        - scheme: "$BITRISE_SCHEME"
+        - distribution_method: "$BITRISE_DISTRIBUTION_METHOD"
+        - configuration: Release
+        - automatic_code_signing: api-key
+    - deploy-to-bitrise-io@2: {}
+  primary:
+    description: |
+      Runs tests.
+
+      Next steps:
+      - Check out [Getting started with React Native apps](https://docs.bitrise.io/en/bitrise-ci/getting-started/quick-start-guides/getting-started-with-react-native-projects.html).
+    steps:
+    - git-clone@8: {}
+    - restore-npm-cache@3: {}
+    - yarn@2:
+        title: yarn install
+        inputs:
+        - workdir: "$WORKDIR"
+        - command: install
+    - yarn@2:
+        title: yarn test
+        inputs:
+        - workdir: "$WORKDIR"
+        - command: test
+    - custom-test-results-export@1:
+        title: Export Jest test results
+        inputs:
+        - test_name: Jest Unit Tests
+        - base_path: "$WORKDIR/test-results/junit.xml"
+        - search_pattern: "*"
+    - save-npm-cache@1: {}
+    - deploy-to-bitrise-io@2: {}
+    triggers:
+      push:
+      - branch: master
+      pull_request:
+      - source_branch: "*"
+meta:
+  bitrise.io:
+    stack: osx-xcode-26.5.x
+    machine_type_id: g2.mac.large
+app:
+  envs:
+  - WORKDIR: "."
+    opts:
+      is_expand: false
+  - PROJECT_LOCATION: android
+    opts:
+      is_expand: false
+  - MODULE: app
+    opts:
+      is_expand: false
+  - VARIANT: Debug
+    opts:
+      is_expand: false
+  - BITRISE_PROJECT_PATH: ios/ontime.xcworkspace
+    opts:
+      is_expand: false
+  - BITRISE_SCHEME: ontime
+    opts:
+      is_expand: false
+  - BITRISE_DISTRIBUTION_METHOD: ad-hoc
+    opts:
+      is_expand: false

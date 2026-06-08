@@ -6,6 +6,11 @@
       "type": "ios.app",
       "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/ontime.app",
       "build": "xcodebuild \"VALID_ARCHS=x86_64\" \"CURRENT_ARCH=x86_64\" \"ONLY_ACTIVE_ARCH=YES\" -workspace ios/ontime.xcworkspace -scheme ontime -configuration Release -sdk iphonesimulator -derivedDataPath ios/build -quiet"
+    },
+    "ios.ci": {
+      "type": "ios.app",
+      "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/ontime.app",
+      "build": "xcodebuild -workspace ios/ontime.xcworkspace -scheme ontime -configuration Release -sdk iphonesimulator -derivedDataPath ios/build -quiet DETOX=1"
     }
   },
   "devices": {
@@ -14,12 +19,22 @@
       "device": {
         "type": "iPhone 11"
       }
+    },
+    "simulator.ci": {
+      "type": "ios.simulator",
+      "device": {
+        "type": "iPhone 16"
+      }
     }
   },
   "configurations": {
     "ios": {
       "device": "simulator",
       "app": "ios"
+    },
+    "ios.ci": {
+      "device": "simulator.ci",
+      "app": "ios.ci"
     }
   }
 }
