@@ -12,6 +12,7 @@
     "test:e2e:ci": "detox test --configuration ios.ci --cleanup",
     "build:e2e:ci": "detox build --configuration ios.ci",
     "detox:ci": "bash scripts/detox-ci.sh",
+    "postinstall": "bash scripts/patch-glog.sh",
     "lint": "eslint ."
   },
   "dependencies": {

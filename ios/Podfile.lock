@@ -400,21 +400,21 @@ SPEC CHECKSUMS:
   DoubleConversion: cde416483dac037923206447da6e1454df403714
   FBLazyVector: 3ef4a7f62e7db01092f9d517d2ebc0d0677c4a37
   FBReactNativeSpec: dc7fa9088f0f2a998503a352b0554d69a4391c5a
-  Folly: b73c3869541e86821df3c387eb0af5f65addfab4
-  glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
+  Folly: aeb27d02cdff07ca01f8a8a5a6dd5bcaf6be6f70
+  glog: 9c8ac324e99e06fda60664ae4a8157500d952366
   lottie-ios: 3a3758ef5a008e762faec9c9d50a39842f26d124
-  lottie-react-native: 1fb4ce21d6ad37dab8343eaff8719df76035bd93
+  lottie-react-native: af2d78fe43a95cbcef489e7acdba62548adcab9a
   RCTRequired: f13f25e7b12f925f1f6a6a8c69d929a03c0129fe
   RCTTypeSafety: 44982c5c8e43ff4141eb519a8ddc88059acd1f3a
   React: e1c65dd41cb9db13b99f24608e47dd595f28ca9a
   React-callinvoker: 552a6a6bc8b3bb794cf108ad59e5a9e2e3b4fc98
-  React-Core: 9d341e725dc9cd2f49e4c49ad1fc4e8776aa2639
+  React-Core: db20aba5b9c96cd1bce51b5f50d4fb4780263034
   React-CoreModules: 5335e168165da7f7083ce7147768d36d3e292318
-  React-cxxreact: d3261ec5f7d11743fbf21e263a34ea51d1f13ebc
-  React-jsi: 54245e1d5f4b690dec614a73a3795964eeef13a8
-  React-jsiexecutor: 8ca588cc921e70590820ce72b8789b02c67cce38
+  React-cxxreact: e7c35119f87db48b622c1878e15d2e24c21855f5
+  React-jsi: 8e71b928fda3f912958a6d12abac80b04a84d0ec
+  React-jsiexecutor: 7d7952cfb00006832d9a7dc380d2b0e2ec729a66
   React-jsinspector: b14e62ebe7a66e9231e9581279909f2fc3db6606
-  react-native-safe-area-context: f0906bf8bc9835ac9a9d3f97e8bde2a997d8da79
+  react-native-safe-area-context: acb445865b15d6d8cef4dbd1f269a2f9c85fa554
   React-RCTActionSheet: 910163b6b09685a35c4ebbc52b66d1bfbbe39fc5
   React-RCTAnimation: 9a883bbe1e9d2e158d4fb53765ed64c8dc2200c6
   React-RCTBlob: 39cf0ece1927996c4466510e25d2105f67010e13
@@ -424,13 +424,13 @@ SPEC CHECKSUMS:
   React-RCTSettings: 8a49622aff9c1925f5455fa340b6fe4853d64ab6
   React-RCTText: 1b6773e776e4b33f90468c20fe3b16ca3e224bb8
   React-RCTVibration: 4d2e726957f4087449739b595f107c0d4b6c2d2d
-  ReactCommon: a0a1edbebcac5e91338371b72ffc66aa822792ce
-  RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
-  RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
-  RNReanimated: d9da990fc90123f4ffbfdda93d00fc15174863a8
-  RNScreens: f7ad633b2e0190b77b6a7aab7f914fad6f198d8d
+  ReactCommon: fa29cd26da28821840cc84e4246a4f4e9d8beae6
+  RNCMaskedView: 4c5ee1c8667d56077246cc6d1977f77393923560
+  RNGestureHandler: 6572a5f44759900730562b418da289c373de8d06
+  RNReanimated: 2b7882997cff59b4956d675707eef858e0a35484
+  RNScreens: 6a2106686e0de9866ab14ca250d7e47a49416b51
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
 
-PODFILE CHECKSUM: 8f8db5c14797b186cfb0e545b59a8a8484cbaec1
+PODFILE CHECKSUM: dc36c25d8e33549c2d5e1fd7e106163f9e49ad28
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.16.2

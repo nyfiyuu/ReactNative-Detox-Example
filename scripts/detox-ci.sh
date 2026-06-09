@@ -18,3 +18,7 @@ npx detox build --configuration ios.ci
 
 echo "Running Detox e2e tests..."
 npx detox test --configuration ios.ci --cleanup
+
+if command -v envman >/dev/null 2>&1; then
+  envman add --key DETOX_TESTS_RAN --value "true"
+fi

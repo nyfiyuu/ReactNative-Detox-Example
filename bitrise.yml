@@ -28,9 +28,17 @@ workflows:
         - test_name: Jest Unit Tests
         - base_path: "$WORKDIR/test-results/junit.xml"
         - search_pattern: "*"
+    - script@1:
+        title: Patch glog for modern Xcode
+        inputs:
+        - content: |
+            #!/usr/bin/env bash
+            set -euo pipefail
+            bash "$WORKDIR/scripts/patch-glog.sh"
     - cocoapods-install@3:
         inputs:
         - is_cache_disabled: 'true'
+        - command: install
     - script@1:
         title: Detox - Build and Test
         inputs:
@@ -40,6 +48,7 @@ workflows:
             bash "$WORKDIR/scripts/detox-ci.sh"
     - custom-test-results-export@1:
         title: Export Detox e2e test results
+        run_if: '{{enveq "DETOX_TESTS_RAN" "true"}}'
         inputs:
         - test_name: Detox E2E Tests
         - base_path: "$WORKDIR/test-results/detox-junit.xml"
